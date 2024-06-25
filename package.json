@@ -1,51 +1,32 @@
 {
-  "name": "postcss-value-parser",
+  "name": "postcss-value-parser-esm",
   "version": "4.2.0",
-  "description": "Transforms css values and at-rule params into the tree",
-  "main": "lib/index.js",
+  "description": "ESM fork of postcss-value-parser. Transforms css values and at-rule params into the tree",
+  "type": "module",
+  "exports": {
+    ".": "./lib/index.js"
+  },
   "files": [
     "lib"
   ],
   "devDependencies": {
-    "eslint": "^5.16.0",
-    "husky": "^2.3.0",
-    "lint-staged": "^8.1.7",
-    "prettier": "^1.17.1",
-    "tap-spec": "^5.0.0",
-    "tape": "^4.10.2"
+    "@web/test-runner": "^0.18.2",
+    "@web/test-runner-playwright": "^0.11.0",
+    "chai": "^5.1.1",
+    "eslint": "^9.5.0",
+    "prettier": "^3.3.2"
   },
   "scripts": {
-    "lint:prettier": "prettier \"**/*.js\" \"**/*.ts\" --list-different",
-    "lint:js": "eslint . --cache",
-    "lint": "yarn lint:js && yarn lint:prettier",
-    "pretest": "yarn lint",
-    "test": "tape test/*.js | tap-spec"
+    "lint": "eslint . && prettier \"**/*.{js,ts,json,md}\" --list-different",
+    "format": "eslint . --fix && prettier \"**/*.{js,ts,json,md}\" --write",
+    "test": "web-test-runner --coverage"
   },
-  "eslintConfig": {
-    "env": {
-      "es6": true,
-      "node": true
-    },
-    "extends": "eslint:recommended"
-  },
-  "lint-staged": {
-    "*.js": [
-      "eslint",
-      "prettier --write",
-      "git add"
-    ]
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
-  },
-  "author": "Bogdan Chadkin <trysound@yandex.ru>",
+  "author": "Joren Broekema <joren.broekema@gmail.com>",
   "license": "MIT",
-  "homepage": "https://github.com/TrySound/postcss-value-parser",
+  "homepage": "https://github.com/jorenbroekema/postcss-value-parser",
   "repository": {
     "type": "git",
-    "url": "https://github.com/TrySound/postcss-value-parser.git"
+    "url": "https://github.com/jorenbroekema/postcss-value-parser.git"
   },
   "keywords": [
     "postcss",
@@ -53,6 +34,22 @@
     "parser"
   ],
   "bugs": {
-    "url": "https://github.com/TrySound/postcss-value-parser/issues"
+    "url": "https://github.com/jorenbroekema/postcss-value-parser/issues"
+  },
+  "eslintConfig": {
+    "extends": "eslint:recommended",
+    "env": {
+      "es6": true,
+      "node": true,
+      "mocha": true
+    },
+    "parserOptions": {
+      "ecmaVersion": "latest",
+      "sourceType": "module",
+      "allowImportExportEverywhere": true
+    },
+    "ignorePatterns": [
+      "coverage"
+    ]
   }
 }

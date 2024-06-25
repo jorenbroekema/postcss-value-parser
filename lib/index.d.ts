@@ -174,4 +174,4 @@ declare namespace postcssValueParser {
 
 declare const postcssValueParser: postcssValueParser.ValueParser;
 
-export = postcssValueParser;
+export default postcssValueParser;
